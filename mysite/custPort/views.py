@@ -8,10 +8,10 @@ from .models import Account, CustomerAccount
 def home(request):
 
     #dummy return
-    return HttpResponse("Hello! This is the home page.")
+    #return HttpResponse("Hello! This is the home page.")
     
     #use this when the home.html page is written
-    #return render(request, 'custPort/home.html', context)
+    return render(request, 'custPort/home.html')
 
 def account(request, account_id):
     #accountinfo = "Account id:" + str(account_id)
