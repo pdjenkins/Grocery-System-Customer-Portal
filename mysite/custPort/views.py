@@ -3,7 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.urls import reverse
 from django.template import loader
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Account, CustomerAccount
+#from .forms import createAccountForm
 # Create your views here.
 def home(request):
 
@@ -21,3 +23,8 @@ def account(request, account_id):
     #return HttpResponse("This page displays your account info.\n" + accountinfo)
     #use when account.html is written
     #return render(request, 'custPort/account.html', {'account':account})
+
+class AccountCreate(CreateView):
+    model = Account
+    fields = ['username_text', 'password_text', 'name_text', 'account_number']
+    success_url="/custPort/"
