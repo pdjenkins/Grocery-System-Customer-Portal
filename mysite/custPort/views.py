@@ -4,6 +4,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.template import loader
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from . import forms
 from .models import Account, CustomerAccount
 #from .forms import createAccountForm
 # Create your views here.
@@ -24,7 +25,19 @@ def account(request, account_id):
     #use when account.html is written
     #return render(request, 'custPort/account.html', {'account':account})
 
-class AccountCreate(CreateView):
+class CreateAccount(CreateView):
     model = Account
     fields = ['username_text', 'password_text', 'name_text', 'account_number']
     success_url="/custPort/"
+class CreateCustomerAccount(CreateView):
+    model = CustomerAccount
+    fields = ['username_text', 'password_text', 'name_text', 'account_number', 'address_text', 'bill_address_text', 'email_text', 'CC_info', 'save_CC']
+    success_url="/custPort/"
+
+def sign_in_form (request):
+    form = forms.SignIn()
+    if request.method == 'POST':
+        form = forms.SignIn(request.POST)
+    else:
+        form = forms.SignIn(request.GET)
+    return render(request, 'custPort/sign_in.html',{'form': form })

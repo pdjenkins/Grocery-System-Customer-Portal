@@ -18,15 +18,17 @@ class Account(models.Model):
         return "user: " + self.username_text + ", pass: " + self.password_text + ", name: " + self.name_text + ", account# " + str(self.account_number)
     
 class CustomerAccount(models.Model):
-    #this links the 'Customer' account to the 'Account' parent class
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    
     #account data
+    username_text = models.CharField(max_length=200)
+    password_text = models.CharField(max_length=200)#temporary, super vulnerable and BAD password storage
+    name_text = models.CharField(max_length=200)
+    account_number = models.IntegerField(-1, help_text="Account Number") #negative to show the account is not complete, this should only change when all other fields are filled.
+    #customer account data
     address_text = models.CharField(max_length=200)
     bill_address_text = models.CharField(max_length=200)
     email_text = models.CharField(max_length=200)
     CC_info = models.CharField(max_length=200)
-    save_CC = models.BooleanField(False)
+    save_CC = models.BooleanField(False, help_text="Save Credit Card info?")
     #to string of class
     #might want to change this to just the account.name_text, depends on how we use this method...
     def __str__(self):

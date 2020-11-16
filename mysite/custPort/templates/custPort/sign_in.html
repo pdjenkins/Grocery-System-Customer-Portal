@@ -5,14 +5,15 @@
         <title>Customer Portal</title>
     </head>
     <body>
-    <p>This is the page where users can create an account</p>
-    <form method="post">
+    <p>This is the sign in page</p>
+    <form action = '' method="post">
         <!-- Security Token -->
         {% csrf_token %}
         <!-- Using the formset -->
-        {{ form.as_p }}
-        <a>Is this a Customer Account?<input type="checkbox"></a>
-        <input type="submit" value="Save">
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Sign in">
     </form>
     </body>
 </html>

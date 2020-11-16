@@ -6,6 +6,8 @@
     </head>
     <body>
     <p>This is the page where users can sign in or click the link to create an account</p>
-    <a href="{% url 'custPort:createaccount' %}">Create Account</a>
+    <a href="{% url 'custPort:sign_in_form' %}">Sign in with existing account</a><p></p>
+    <a href="{% url 'custPort:createaccount' %}">Create Generic Account</a><p></p>
+    <a href="{% url 'custPort:create_customer_account' %}">Create Customer Account</a>
     </body>
 </html>
